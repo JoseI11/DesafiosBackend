@@ -70,7 +70,7 @@ export default class ProductManager {
                     this.products = valor;
               
                     await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
-                    return "Product sucessfully updated";
+                    return "Product eliminated";
                
                 } catch (error) {
                     console.log(error);
@@ -104,7 +104,7 @@ export default class ProductManager {
         
                 //console.log(this.products)
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, "\t"));
-                return "Product eliminated from the list";
+                return "Product updated";
             } catch (error) {
                 console.log(error)
             }
