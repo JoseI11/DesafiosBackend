@@ -1,29 +1,43 @@
 import fs from "fs";
+
+
 export default class ProductManager {
     constructor() {
         this.products = [];
         this.path = "./files/Productos.json";
     }
+    byteSize = str => new Blob([str]).size;
     getProducts = async () => {
-        if (fs.existsSync(this.path)) {
+        try {
+     
             const data = await fs.promises.readFile(this.path, 'utf-8');
+            
             const result = JSON.parse(data);
             return result;
-        } else {
+
+
+        } catch (error) {
+            console.error(`Error to read the file ${this.path} ${error}`);
             return [];
         }
+
     }
     addProduct = async (code, title, description, price, thumbnail, stock) => {
+       
         try {
+
+            let products = await this.getProducts();
+
             if (!code || !title || !description || !price || !thumbnail || !stock) {
                 console.log("All the fields must be completed")
                 return;
             }
-    
-            let productRepeated = this.products.find((element) => element.code === code);
+
+
+            let productRepeated = products.find((element) => element.code === code);
             if (productRepeated) {
                 return `The field code ${code} is repeated so this product cannot be save in the list`;
-                
+
             }
             const product = {
                 code: code,
@@ -34,68 +48,81 @@ export default class ProductManager {
                 stock: stock,
                 id: this.products.length + 1
             }
-    
-    
-            this.products.push(product);
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, "\t"));
-            return this.products
+
+
+            products.push(product);
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
+            return products;
         } catch (error) {
             console.log(error);
         }
-     
+
     }
 
     getProductById = async (id) => {
-        if (fs.existsSync(this.path)) {
-            try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                const result = JSON.parse(data);
+
+        try {
+            if (fs.existsSync(this.path)) {
+                const result = await this.getProducts();
 
                 let indexValue = result.find((event) => event.id === id);
                 if (!indexValue) {
-                   
+
                     return "This product  with this ID does not exist in the file";
                 } else {
 
                     return indexValue;
                 }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
+
+    }
+    deleteProducts = async (id) => {
+
+
+        const products = await this.getProducts()
+
+
+        let productFounded = products.find((product) => product.id === id)
+        if (productFounded) {
+            try {
+                const valor = this.products.filter((event) => event.id != id);
+
+                this.products = valor;
+
+                await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
+                return "Product eliminated";
+
             } catch (error) {
                 console.log(error);
             }
 
+        } else {
+            return `The product to delete with the id: ${id} does not exist in the list`
         }
 
-    }
-    deleteProducts = async (id) => {
-        if (fs.existsSync(this.path)) {
-            let productFounded = this.products.find((product) => product.id === id)
-            if (productFounded) {
-                try {
-                    const valor = this.products.filter((event) => event.id != id);
 
-                    this.products = valor;
-
-                    await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
-                    return "Product eliminated";
-
-                } catch (error) {
-                    console.log(error);
-                }
-
-            } else {
-                return `The product to delete with the id: ${id} does not exist in the list`
-            }
-
-        }
 
     }
     updateProduct = async (id, code, title, description, price, thumbnail, stock) => {
-        let productExists = this.products.find((product) => product.id === id)
-        if (productExists) {
-            try {
-                const productoAmodificar = this.products.filter((product) => product.id === id);
+        try {
+            const products = await this.getProducts();
 
-                const prod = {
+            if (products === "error") {
+                return "The file is empty";
+            }
+
+
+            let productExists = products.find((product) => product.id === id)
+            if (productExists != undefined) {
+
+                const productoAmodificar = products.filter((product) => product.id === id);
+
+                const productoModificado = {
 
                     code: code ?? productoAmodificar[0].code,
                     title: title ?? productoAmodificar[0].title,
@@ -106,19 +133,19 @@ export default class ProductManager {
                     id: id
                 }
 
-                this.products[id - 1] = prod;
+                products[id - 1] = productoModificado;
 
                 //console.log(this.products)
-                await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, "\t"));
+                await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
                 return "Product updated";
-            } catch (error) {
-                console.log(error)
+
+
+            } else {
+                return `The product to update with the id ${id} does not exist in the list`;
             }
-
-        } else {
-            return `The product to update with the id ${id} does not exist in the list`;
+        } catch (error) {
+            console.log(error)
         }
-
 
     }
 }

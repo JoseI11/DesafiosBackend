@@ -1,5 +1,14 @@
 [
 	{
+		"code": "Mouse",
+		"title": "Mouse Inalambrico Logitech",
+		"description": "Negro con led roja",
+		"price": 200,
+		"thumbnail": "mouse.jpg",
+		"stock": 50,
+		"id": 1
+	},
+	{
 		"code": "PR01",
 		"title": "Mouse Inalambrico Logitech",
 		"description": "Negro con led roja",
