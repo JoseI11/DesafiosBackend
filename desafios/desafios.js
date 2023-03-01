@@ -46,7 +46,7 @@ export default class ProductManager {
                 price: price,
                 thumbnail: thumbnail,
                 stock: stock,
-                id: this.products.length + 1
+                id: products.length + 1
             }
 
 
@@ -90,9 +90,9 @@ export default class ProductManager {
         let productFounded = products.find((product) => product.id === id)
         if (productFounded) {
             try {
-                const valor = this.products.filter((event) => event.id != id);
+                const valor = products.filter((event) => event.id != id);
 
-                this.products = valor;
+         
 
                 await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
                 return "Product eliminated";
