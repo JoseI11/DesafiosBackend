@@ -6,7 +6,7 @@ export default class ProductManager {
         this.products = [];
         this.path = "./files/Productos.json";
     }
-    byteSize = str => new Blob([str]).size;
+    
     getProducts = async () => {
         try {
      
