@@ -1,20 +1,32 @@
 import fs from "fs";
-
+import express from "express";
 
 export default class ProductManager {
     constructor() {
         this.products = [];
         this.path = "./files/Productos.json";
     }
-    
+    productServer = express();
+    returnObject = async () => {
+        const data = await fs.promises.readFile(this.path, 'utf-8');
+        const result = JSON.parse(data);
+        return result;
+        
+    }
+
     getProducts = async () => {
         try {
-     
-            const data = await fs.promises.readFile(this.path, 'utf-8');
-            
-            const result = JSON.parse(data);
-            return result;
+            if (fs.existsSync(this.path)) {
+                const data = await fs.promises.readFile(this.path, 'utf-8');
+                // valorArchivo= new Blob([data]).size;
+                // if(valorArchivo!=0){
 
+                // }
+                const result = JSON.parse(data);
+                return result;
+            } else {
+                return [];
+            }
 
         } catch (error) {
             console.error(`Error to read the file ${this.path} ${error}`);
@@ -23,7 +35,7 @@ export default class ProductManager {
 
     }
     addProduct = async (code, title, description, price, thumbnail, stock) => {
-       
+
         try {
 
             let products = await this.getProducts();
@@ -66,13 +78,9 @@ export default class ProductManager {
                 const result = await this.getProducts();
 
                 let indexValue = result.find((event) => event.id === id);
-                if (!indexValue) {
-
-                    return "This product  with this ID does not exist in the file";
-                } else {
-
+               
                     return indexValue;
-                }
+                
             }
         } catch (error) {
             console.log(error);
@@ -92,7 +100,7 @@ export default class ProductManager {
             try {
                 const valor = products.filter((event) => event.id != id);
 
-         
+
 
                 await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
                 return "Product eliminated";
