@@ -7,27 +7,25 @@ const operacionesProductos = async () => {
 
 
 
+
+
         productServer.get("/products", async (req, res) => {
-            let consulta = await manager.getProducts();
-    
-            res.send(consulta);
-        });
+
+            const consulta = await manager.getProducts();
+            let limite = req.query.limit
+
+            if (Number.parseInt(limite) === 5) {
+                console.log("a")
+                const resultado = consulta.slice(0, Number.parseInt(limite));
+                res.send(resultado);
+            } else {
+
+                res.send(consulta);
+            }
 
 
-         productServer.get("/products", async (req, res) => {
-                     const consulta = await manager.getProducts();
-            let limit = req.query.limit
-            console.log(req);
-            res.send(consulta)
-            // limit=5;
-            // if(limit === undefined){
-            //     console.log("error")
-            // }
-            // console.log(limit);
-            // const result=consulta.slice(0,Number.parseInt(limit));
-            //  res.send(result);
         });
-        // let productoId = await manager.getProductById(3)
+
         productServer.get("/products/:pid", async (req, res) => {
             let id = req.params.pid
             console.log(id)
@@ -41,15 +39,6 @@ const operacionesProductos = async () => {
             }
         });
 
-
-       
-
-        productServer.get('/app', function(req, res){
-            console.log(req.query.id);
-            console.log('id: ' + req.query.id)
-            res.send('id: ' + req.query.id);
-         });
-         
         productServer.listen(8080, () => {
             console.log("Servidor arriba en el puerto 8080");
         });
