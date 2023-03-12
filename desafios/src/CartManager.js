@@ -73,7 +73,7 @@ export default class CartManager {
 
                     let cantidad = 0
                     const productAdding = {
-                        id: indexValue.id, quantity: cantidad + 1
+                        id: indexValue.id, quantity: cantidad 
                     }
 
                     productExistsIncart.products.push(productAdding);
@@ -85,9 +85,10 @@ export default class CartManager {
 
 
                 } else {
+                    console.log(resultado.quantity)
                     const prodQuantitymodified = { id: resultado.id, "quantity": resultado.quantity + 1 }
-                    
-                    productExistsIncart.products[resultado.id-1]=prodQuantitymodified
+                    console.log(productExistsIncart.products.length)
+                    productExistsIncart.products[productExistsIncart.products.length-1]=prodQuantitymodified
                     await fs.promises.writeFile(this.path, JSON.stringify(cart, null, "\t"));
                     return `Cantidad modificada`;
 
