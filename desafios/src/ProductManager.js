@@ -4,8 +4,9 @@ import express from "express";
 export default class ProductManager {
     constructor() {
         this.products = [];
-        this.path = "./files/Productos.json";
+        this.path = "./src/public/files/Productos.json";
     }
+   // desafios\src\public\files\Productos.json
     productServer = express();
     returnObject = async () => {
         const data = await fs.promises.readFile(this.path, 'utf-8');

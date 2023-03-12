@@ -7,7 +7,8 @@ const productmanager = new ProductManager();
 export default class CartManager {
     constructor() {
         this.cart = [];
-        this.path = "./files/Cart.json";
+     
+        this.path = "./src/public/files/Cart.json";
     }
     getCart = async () => {
         try {
