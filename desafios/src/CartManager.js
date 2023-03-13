@@ -120,7 +120,7 @@ export default class CartManager {
                 const result = await this.getCart();
 
                 let indexValue = result.find((event) => event.id === id);
-
+                console.log(indexValue)
                 return indexValue;
 
             }

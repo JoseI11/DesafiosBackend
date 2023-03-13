@@ -24,6 +24,7 @@ router.post("/",async(req,res)=>{
 router.get("/:cid",async(req,res)=>{
     try {
         const id= req.params.cid
+        console.log(id)
         const cart= await cartmanager.getCartById(Number.parseInt(id));
         
         if(!cart){
