@@ -1,25 +1,28 @@
 import fs from "fs";
-import express, { json } from "express";
-import ProductManager from "./ProductManager.js";
+
+import { Blob } from "buffer";
 
 
-const productmanager = new ProductManager();
 export default class CartManager {
     constructor() {
         this.cart = [];
-     
-        this.path = "./src/public/files/Cart.json";
+        this.pathfiles = "./files";
+        this.path = "./files/Cart.json";
     }
     getCart = async () => {
         try {
+            if (!fs.existsSync(this.pathfiles)) {
+                fs.mkdirSync(this.pathfiles)
+            }
             if (fs.existsSync(this.path)) {
                 const data = await fs.promises.readFile(this.path, 'utf-8');
-                // valorArchivo= new Blob([data]).size;
-                // if(valorArchivo!=0){
-
-                // }
-                const result = JSON.parse(data);
-                return result;
+                const size = new Blob([data]).size;
+                if (size > 0) {
+                    const result = JSON.parse(data);
+                    return result;
+                } else {
+                    return [];
+                }
             } else {
                 return [];
             }
@@ -54,63 +57,31 @@ export default class CartManager {
     }
     addProducttoCart = async (cId, idProd) => {
         try {
-            const products = await productmanager.getProducts();
-            let cart = await this.getCart();
-
-            const productExistsIncart = cart.find((cartprod) => cartprod.id === cId)
-
-            // if(typeof cId !="number" || typeof idProd)
-
-            if (!productExistsIncart) {
-                return `El carrito solicitado no existe`;
-            } else {
-                let indexValue = products.find((event) => event.id === idProd);
-                // console.log(indexValue.id)
-                // console.log(productExistsIncart.products)
-                const resultado = productExistsIncart.products.find((prod) => prod.id === idProd)
-
-                if (!resultado) {
-
-                    let cantidad = 0
-                    const productAdding = {
-                        id: indexValue.id, quantity: cantidad 
-                    }
-
-                    productExistsIncart.products.push(productAdding);
-
-
-                    // cart.push(productExistsIncart)
-                    await fs.promises.writeFile(this.path, JSON.stringify(cart, null, "\t"));
-                    return `Producto agregado al carrito`;
-
-
+            const productToAdd = {
+                id: parseInt(idProd),
+                quantity: 1,
+              };
+        
+              const carts = await this.getCart();
+        
+              const cartIdFound = carts.findIndex((cart) => cart.id === parseInt(cId));
+              const productIdFound = carts[cartIdFound].products.findIndex((prod) => prod.id === parseInt(idProd)) // Searches for a product ID inside a Cart ID.
+        
+              if (cartIdFound !== -1) {
+                if ( productIdFound !== -1 ) {
+                  carts[cartIdFound].products[productIdFound].quantity++;
                 } else {
-                    console.log(resultado.quantity)
-                    const prodQuantitymodified = { id: resultado.id, "quantity": resultado.quantity + 1 }
-                    console.log(productExistsIncart.products.length)
-                    productExistsIncart.products[productExistsIncart.products.length-1]=prodQuantitymodified
-                    await fs.promises.writeFile(this.path, JSON.stringify(cart, null, "\t"));
-                    return `Cantidad modificada`;
-
-             
-                   
+                  carts[cartIdFound].products.push(productToAdd);
                 }
-            }
-
-
-
-
-            // let existCart = cart.find((event) => event. === productToAdd.id);
-            // if(!existCart){
-            //     carritoProd=[];
-            //     {}
-            //     ={id:id,products:};
-            // }else{
-            //     return 2;
-            // }
+                await fs.promises.writeFile(this.path,JSON.stringify(carts, null, "\t"));
+              } else {
+                throw new Error(`Add: Carrito en ID ${cId} NO EXISTE`);
+              }
+           
         } catch (error) {
             console.log(error)
         }
+    
     }
 
     getCartById = async (id) => {
@@ -129,6 +100,6 @@ export default class CartManager {
         }
 
 
-
     }
+    
 }

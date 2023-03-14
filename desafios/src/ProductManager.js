@@ -1,12 +1,13 @@
 import fs from "fs";
 import express from "express";
-
+import { Blob } from "buffer";
 export default class ProductManager {
     constructor() {
         this.products = [];
-        this.path = "./src/public/files/Productos.json";
+        this.pathfiles = "./files";
+        this.path = "./files/Products.json";
     }
-   // desafios\src\public\files\Productos.json
+
     productServer = express();
     returnObject = async () => {
         const data = await fs.promises.readFile(this.path, 'utf-8');
@@ -17,21 +18,25 @@ export default class ProductManager {
 
     getProducts = async () => {
         try {
+            if (!fs.existsSync(this.pathfiles)) {
+                fs.mkdirSync(this.pathfiles)
+            }
             if (fs.existsSync(this.path)) {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                // valorArchivo= new Blob([data]).size;
-                // if(valorArchivo!=0){
 
-                // }
-                const result = JSON.parse(data);
-                return result;
+                const data = await fs.promises.readFile(this.path, 'utf-8');
+
+                const size = new Blob([data]).size;
+                if (size > 0) {
+                    const result = JSON.parse(data);
+                    return result;
+                } else {
+                    return [];
+                }
             } else {
                 return [];
             }
-
         } catch (error) {
-            console.error(`Error to read the file ${this.path} ${error}`);
-            return [];
+            console.log(error)
         }
 
     }
@@ -39,39 +44,29 @@ export default class ProductManager {
 
         try {
 
+            productObject.stock > 0
+                ? productObject = { status: true, ...productObject }
+                : productObject = { status: false, ...productObject }
+
+
+
+            // if (productObject.thumbnail[1].hasOwnProperty("fieldname")) {
+            //     const imgPaths = productObject.thumbnail.map(prod => prod.path);
+            //     productObject.thumbnail = imgPaths;
+            // }
+
             const products = await this.getProducts();
+            const productIndex = await products.findIndex((prod) => prod.code === productObject.code);
 
-            if (!productObject.code || !productObject.title || !productObject.description || !productObject.price || !productObject.thumbnail || !productObject.stock || !productObject.category) {
-                console.log("All the fields must be completed")
-                return;
-            }
-            
-    
-
-            let productRepeated = products.find((element) => element.code === productObject.code);
-         
-            if (productRepeated) {
-                return null;
-            
-            }
-            let status = productObject.stock > 0 ? true : false;
-            const product = {
-                id: products.length + 1,
-                title: productObject.title,
-                description: productObject.description,
-                code: productObject.code,
-                status: status,
-                price: productObject.price,
-                category: productObject.category,
-                thumbnail: productObject.thumbnail,
-                stock: productObject.stock
-
+            if (productIndex === -1) {
+                products.length === 0
+                    ? productObject = { id: 1, ...productObject }
+                    : productObject = { id: products[products.length - 1].id + 1, ...productObject }
+                products.push(productObject);
+                await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
+                return productObject;
             }
 
-
-            products.push(product);
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
-            return `Producto agregado`;
         } catch (error) {
             console.log(error);
         }
@@ -97,33 +92,29 @@ export default class ProductManager {
 
     }
     deleteProducts = async (id) => {
-        const products = await this.getProducts()
-        let productFounded = products.find((product) => product.id === id)
-        if (productFounded) {
-            try {
+        try {
+            const products = await this.getProducts()
+            let productFounded = products.findIndex((product) => product.id === id)
+            if (productFounded !== -1) {
                 const valor = products.filter((event) => event.id != id);
                 await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
                 return "Product eliminated";
-
-            } catch (error) {
-                console.log(error);
+            } else {
+                return productFounded;
             }
-
-        } else {
-            return `The product to delete with the id: ${id} does not exist in the list`
+        } catch (error) {
+            console.log(error)
         }
+
     }
-    updateProduct = async (idUpdate,productUpdate) => {
+    updateProduct = async (idUpdate, productUpdate) => {
         try {
             const products = await this.getProducts();
-
             if (products === "error") {
                 return "The file is empty";
             }
-
-
-            let productExists = products.find((product) => product.id === idUpdate)
-            if (productExists != undefined) {
+            let productExists = products.findIndex((product) => product.id === idUpdate)
+            if (productExists !== -1) {
 
                 const productoAmodificar = products.filter((product) => product.id === idUpdate);
 
@@ -144,11 +135,8 @@ export default class ProductManager {
 
                 //console.log(this.products)
                 await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
-                return `Product updated`;
-
-
             } else {
-                return null;
+                return productExists;
             }
         } catch (error) {
             console.log(error)
