@@ -5,7 +5,8 @@ addToCartForms.forEach((form) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     // const cartId = form.querySelector("#cid").value;
-    // alert(cartId+"fsfsdf")
+
+    
     const productId = form.getAttribute("id").split("-")[1];
 
     const prodTitle = form.closest("div").querySelector("h5").textContent;

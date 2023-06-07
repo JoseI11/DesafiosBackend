@@ -6,7 +6,7 @@ let pId=document.getElementById('pid').value;
 const home=document.getElementById("home");
   formButton.addEventListener("click", (e) => {
     e.preventDefault();
-    // alert(form.getAttribute("id"))
+
    
 
     // const productId = form.getAttribute("id").split("-")[1];

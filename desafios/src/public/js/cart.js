@@ -1,9 +1,9 @@
 const removeFromCartForms = document.querySelectorAll(
     '[id^="removeFromCartForm-"]'
   );
-  alert(removeFromCartForms)
+
   const cartId = document.getElementById("cartId").textContent;
-     alert(cartId)
+
   removeFromCartForms.forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -12,7 +12,7 @@ const removeFromCartForms = document.querySelectorAll(
       //   .closest(".max-w-4xl")
       //   .querySelector("h5").textContent;
    
-      alert(productId)
+
       fetch(`/api/carts/${cartId}/product/${productId}`, {
         method: "DELETE",
       })
