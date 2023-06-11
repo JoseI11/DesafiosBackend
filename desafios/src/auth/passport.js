@@ -39,7 +39,7 @@ const initializePassport = () => {
         try {
 
             const user = await userModel.findOne({ email: username }).lean();
-            console.log(user)
+            console.log(user.password)
             if (!user) {
                 console.error("Authentication")
                 return done(null, false)

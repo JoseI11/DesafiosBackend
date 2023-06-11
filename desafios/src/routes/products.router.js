@@ -6,10 +6,9 @@ import { roladm } from "../../middlewares/auth.js";
 const router = Router();
 
 
-
 router.get("/", getProducts);
 router.get("/:pid", getProductsbyId);
-router.post("/",roladm, uploader.array("thumbnails"),addProducts);
+router.post("/", roladm,uploader.array("thumbnails"),addProducts);
 router.put("/:pid",roladm ,uploader.array("thumbnails"),updateProducts);
 router.delete("/:pid",roladm, deleteProducts);
 

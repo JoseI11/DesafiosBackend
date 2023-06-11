@@ -11,6 +11,7 @@ import cartrouter from './routes/cart.router.js'
 import viewrouter from './routes/views.router.js'
 import database from "./db.js";
 import config from "./config.js";
+import mockRouter from "./routes/mocking.router.js";
 import sessionsRouter from "./routes/sessions.router.js"
 import smsRouter from "./routes/sms.router.js"
 
@@ -61,7 +62,7 @@ const httpServer = productServer.listen(8080, () => {
 });
 database.connect();
 
-
+productServer.get("/mockingproducts",mockRouter)
 productServer.get("/mail",mailRouter)
 productServer.get("/sms",smsRouter)
 //productServer.use("/chat",chatRouter);
