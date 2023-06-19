@@ -2,7 +2,7 @@ import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./utils/utils.js";
 import socket from './socket.js'
-
+import loggerRouter from "./routes/loggertest.router.js"
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import productsRouter from './routes/products.router.js';
@@ -73,16 +73,7 @@ productServer.get("/sms", smsRouter)
 productServer.use("/api/sessions", sessionsRouter);
 //productServer.get("/loggerTest",loggerRouter)
 productServer.use("/api/products", productsRouter);
-productServer.get("/loggerTest", (req, res) => {
-  req.logger.debug("This is a debug log");
-  req.logger.http("This is an HTTP log");
-  req.logger.info("This is an info log");
-  req.logger.warning("This is a warning log");
-  req.logger.error("This is an error log");
-  req.logger.fatal("This is a fatal log");
-
-  res.send("Logger test completed");
-});
+productServer.get("/loggerTest", loggerRouter);
 productServer.use("/api/carts", cartrouter);
 productServer.use("/", viewrouter);
 socket.connect(httpServer)
