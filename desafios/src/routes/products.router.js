@@ -1,6 +1,6 @@
 // import ProductManager from '../dao/fileManagers/ProductManager.js';
 import { Router } from "express";
-import { uploader } from '../utils.js';
+import { uploader } from '../utils/utils.js';
 import { getProducts,getProductsbyId,addProducts,updateProducts,deleteProducts} from "../controllers/products.controller.js";
 import { roladm } from "../../middlewares/auth.js";
 const router = Router();

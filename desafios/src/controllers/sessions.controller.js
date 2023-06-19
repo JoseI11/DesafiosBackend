@@ -1,5 +1,5 @@
 import CurrentUserDto from "../dao/dtos/current-user-dto.js";
-
+import { logger } from "../utils/logger.js";
 export async function registerUser(req, res) {
   return res.send({ status: "Success", message: "User registered" })
 }
@@ -45,6 +45,6 @@ export function failLogin(req,res){
 export function getcurrentUser(req,res){
 
   const userDto = new CurrentUserDto(req.session.user);
-  console.log(userDto)
+  logger.info(userDto)
  return res.send({status:"success",payload:userDto})
 }

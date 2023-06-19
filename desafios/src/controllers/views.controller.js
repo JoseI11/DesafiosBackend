@@ -76,7 +76,7 @@ export const chatView = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(`Failed to render chat view: ${error}`);
+    req.logger.error(`Failed to render chat view: ${error}`);
     res
       .status(500)
       .send({ status: "error", error: "Failed to render chat view" });

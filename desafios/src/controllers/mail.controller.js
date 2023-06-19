@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
-import __dirname from "../utils.js";
-import configMailSms from "../configmailsms.js";
+import __dirname from "../utils/utils.js";
+import configMailSms from "../config/configmailsms.js";
 
 const {
     nodemailerConfig: { service, port, user, password,mail_receptor},
@@ -34,6 +34,6 @@ export async function sendEmail(req,res){
             cid: 'hola1'
         }]
     })
-    console.log(new Date().toLocaleString())
+
     res.send({ status: "success", result: "mail sent" })
 }

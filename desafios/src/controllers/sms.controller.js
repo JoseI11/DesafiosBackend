@@ -1,5 +1,5 @@
 import twilio from "twilio";
-import configMailSms from "../configmailsms.js";
+import configMailSms from "../config/configmailsms.js";
 
 const {
     nodemailerConfig: { service, port, user, password },

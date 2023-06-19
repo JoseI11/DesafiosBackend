@@ -1,5 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
+import { environment } from "./commander.js";
+
+
+dotenv.config({
+    path: environment === "DEVELOPMENT" ? "./.env.dev" : "./.env.prod",
+  }); 
 
 export default {
   nodemailerConfig: {

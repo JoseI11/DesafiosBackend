@@ -1,0 +1,57 @@
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 20:48:29"}
+{"level":"error","message":"Cannot get products with mongoose ReferenceError: error is not defined"}
+{"level":"http","message":"GET in /loggerTest - 20:51:20"}
+{"level":"http","message":"GET in /loggerTest - 20:52:09"}
+{"level":"debug","message":"This is a debug log"}
+{"level":"http","message":"This is an HTTP log"}
+{"level":"info","message":"This is an info log"}
+{"level":"warning","message":"This is a warning log"}
+{"level":"error","message":"This is an error log"}
+{"level":"http","message":"GET in /loggerTest - 21:04:21"}
+{"level":"debug","message":"This is a debug log"}
+{"level":"http","message":"This is an HTTP log"}
+{"level":"info","message":"This is an info log"}
+{"level":"warning","message":"This is a warning log"}
+{"level":"error","message":"This is an error log"}
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 21:04:45"}
+{"level":"error","message":"Cannot get products with mongoose ReferenceError: error is not defined"}
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 21:04:48"}
+{"level":"error","message":"Cannot get products with mongoose ReferenceError: error is not defined"}
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 21:05:42"}
+{"level":"error","message":"Cannot get products with mongoose ReferenceError: error is not defined"}
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 21:05:44"}
+{"level":"error","message":"Cannot get products with mongoose ReferenceError: error is not defined"}
+{"level":"http","message":"GET in /api/products/6435d26ae8d538b99cf7f9e8 - 21:19:53"}
+{"level":"http","message":"GET in /api/carts - 21:26:18"}
+{"level":"http","message":"GET in /api/carts/64336c28e0827af37d69ef3A - 21:26:35"}
+{"level":"info","message":"GET in /api/carts/64336c28e0827af37d69ef3A - 21:57:25"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"error","message":"Listening on port 8080"}
+{"level":"error","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"GET in /api/products/ - 22:26:45"}
+{"level":"info","message":"GET in /api/products/6435d26ae8d538b99cf7f9eA - 22:27:07"}
+{"level":"error","message":"The product does not exist"}{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
+{"level":"info","message":"Listening on port 8080"}
