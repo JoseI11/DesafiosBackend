@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { productService } from "../dao/services/product.service.js";
 export async function getAll(req, res) {
     try {
@@ -30,13 +31,17 @@ export async function getProducts(req, res) {
 }
 export async function getProductsbyId(req, res) {
     try {
-        let { pid } = req.params
+
+        const pid = new mongoose.Types.ObjectId(req.params.pid);
+        
+      
         const consultaId = await productService.getProductsbyitsId(pid);
         if (!consultaId) {
-            req.logger.error(`The product does not exist`);
+            
+            req.logger.error(`The product with the id ${pid} does not exist`);
             return res
                 .status(400)
-                .send({ status: "error", error: "The product does not exists" });
+                .send({ status: "error", error: "The product does not exist" });
 
         }
         return res.send({ status: "success", payload: consultaId });
@@ -93,12 +98,12 @@ export async function updateProducts(req, res) {
  
 
         const product = req.body;
-        const { pid } = req.params;
-
+        const pid = new mongoose.Types.ObjectId(req.params.pid);
 
 
         const result = await productService.updateProduct(product, pid);
         if (!product) {
+            req.logger.error(`The product with the id ${pid} cannot be updated`);
             return res.send({ status: "error", error: "Incomplete values" });
         }
 
@@ -113,10 +118,11 @@ export async function updateProducts(req, res) {
 }
 export async function deleteProducts(res, req) {
     try {
-        const { pid } = req.params;
-
+        c
+        const pid = new mongoose.Types.ObjectId(req.params.pid);
         let result = await productService.deleteProduct(pid);
         if (!result) {
+            req.logger.error(`The product with the id ${pid} cannot be deleted`)
             return res.status(404).send({
                 status: "error",
                 error: "Could not delete this product. No products founded with this ID in the database",

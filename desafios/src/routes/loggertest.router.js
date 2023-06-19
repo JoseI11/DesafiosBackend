@@ -1,14 +1,14 @@
 import Router from "express"
-
+import express from "express";
 const router=Router()
 
 router.get("/loggerTest", (req, res) => {
-    logger.debug("This is a debug log");
-    logger.http("This is an HTTP log");
-    logger.info("This is an info log");
-    logger.warning("This is a warning log");
-    logger.error("This is an error log");
-    logger.fatal("This is a fatal log");
+    req.logger.debug("This is a debug log");
+    req.logger.http("This is an HTTP log");
+    req.logger.info("This is an info log");
+    req.logger.warning("This is a warning log");
+    req.logger.error("This is an error log");
+    req.logger.fatal("This is a fatal log");
 
     res.send("Logger test completed");
 });

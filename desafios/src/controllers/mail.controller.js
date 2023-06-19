@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import __dirname from "../utils/utils.js";
+import __dirname from "../utils.js";
 import configMailSms from "../config/configmailsms.js";
 
 const {

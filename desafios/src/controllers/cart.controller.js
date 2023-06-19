@@ -106,6 +106,7 @@ export async function deletetheCart(req,res){
     try {
       
         const cId= req.params.cid;
+        
         let resultado= await cartService.deleteCart(cId);
         if (!resultado) {
             return res

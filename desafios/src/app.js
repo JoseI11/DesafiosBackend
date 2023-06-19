@@ -1,6 +1,6 @@
 import express from "express";
 import handlebars from 'express-handlebars'
-import __dirname from "./utils/utils.js";
+import __dirname from "./utils.js";
 import socket from './socket.js'
 import loggerRouter from "./routes/loggertest.router.js"
 import session from "express-session";
