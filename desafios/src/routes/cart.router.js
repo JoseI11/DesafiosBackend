@@ -10,7 +10,7 @@ router.get("/", getCartsall);
 
 router.get("/:cid", getCartbyId)
 
-router.post("/:cid/product/:pid",roluser,addProductcart)
+router.post("/:cid/product/:pid",addProductcart)
 router.put("/:cid",updatetheCart)
 router.get("/:cid/purchase",purchase)
 router.put("/:cid/product/:pid",updateProductFromtheCart)

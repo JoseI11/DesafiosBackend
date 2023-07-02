@@ -108,7 +108,7 @@ class TicketService {
                    
                 } else {
                     cart.products = [];
-                    console.log(cart)
+ 
                         await this.cartRepository.updatetheCart(cart._id, cart);
                 }
     

@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config();
 
-import { environment } from "./commander.js";
+import { environment } from "./config/commander.js";
 
 
 dotenv.config({

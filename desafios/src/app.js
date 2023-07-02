@@ -10,13 +10,16 @@ import mailRouter from './routes/mail.router.js'
 import cartrouter from './routes/cart.router.js'
 import viewrouter from './routes/views.router.js'
 import database from "./db.js";
-import config from "./config/config.js";
+import config from "./config.js";
 import mockRouter from "./routes/mocking.router.js";
 import sessionsRouter from "./routes/sessions.router.js"
+import usersRouter from "./routes/users.router.js"
 import smsRouter from "./routes/sms.router.js"
-import { winstonLogger,logger } from "./utils/logger.js";
+import { winstonLogger } from "./utils/logger.js";
+
 import passport from "passport";
 import initializePassport from "./auth/passport.js";
+import cookieParser from "cookie-parser"
 // import passport from "passport";
 // import initializePassport from "../middlewares/passport.js";
 
@@ -29,13 +32,13 @@ productServer.use(express.json());
 productServer.use(express.static(`${__dirname}/public`));
 productServer.use(express.urlencoded({ extended: true }));
 productServer.use(express.static(`${__dirname}/public`));
-
+productServer.use(cookieParser())
 
 productServer.use(
   session({
     store: MongoStore.create({
       mongoUrl: config.dbUrl,
-      ttl: 60
+      ttl: 6000
     }),
     resave: true,
     saveUninitialized: false,
@@ -57,7 +60,7 @@ const httpServer = productServer.listen(8080, (req, res) => {
   try {
     console.log("Listening on port 8080")
   } catch (error) {
-    req.logger.error("Cannot connect to the server")
+   console.log(error)
     return res.status(500).send({
       status: "error",
       error: "Failed to the connect to the server",
@@ -67,7 +70,7 @@ const httpServer = productServer.listen(8080, (req, res) => {
 database.connect();
 
 productServer.get("/mockingproducts", mockRouter)
-productServer.get("/mail", mailRouter)
+productServer.use("/recovery", mailRouter)
 productServer.get("/sms", smsRouter)
 //productServer.use("/chat",chatRouter);
 productServer.use("/api/sessions", sessionsRouter);
@@ -75,6 +78,7 @@ productServer.use("/api/sessions", sessionsRouter);
 productServer.use("/api/products", productsRouter);
 productServer.get("/loggerTest", loggerRouter);
 productServer.use("/api/carts", cartrouter);
+productServer.use("/api/users",usersRouter)
 productServer.use("/", viewrouter);
 socket.connect(httpServer)
 
