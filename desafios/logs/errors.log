@@ -1569,3 +1569,16 @@
 {"level":"debug","message":"GET in /form-products - 17:06:53"}
 {"level":"debug","message":"GET in /css/styleProducts.css - 17:06:53"}
 {"level":"debug","message":"GET in /form-products - 17:06:53"}
+{"level":"debug","message":"GET in / - 20:57:55"}
+{"level":"debug","message":"GET in / - 20:58:55"}
+{"level":"debug","message":"GET in /css/styleProducts.css - 20:58:55"}
+{"level":"debug","message":"GET in /js/login.js - 20:58:55"}
+{"level":"debug","message":"GET in / - 20:58:55"}
+{"level":"debug","message":"GET in / - 21:00:04"}
+{"level":"debug","message":"GET in /css/styleProducts.css - 21:00:04"}
+{"level":"debug","message":"GET in /js/login.js - 21:00:04"}
+{"level":"debug","message":"GET in / - 21:00:04"}
+{"level":"debug","message":"GET in / - 21:00:06"}
+{"level":"debug","message":"GET in /css/styleProducts.css - 21:00:06"}
+{"level":"debug","message":"GET in /js/login.js - 21:00:06"}
+{"level":"debug","message":"GET in / - 21:00:06"}
