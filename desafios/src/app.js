@@ -12,6 +12,7 @@ import passport from "passport";
 import initializePassport from "./auth/passport.js";
 import cookieParser from "cookie-parser"
 
+
 //Initialization
 const productServer = express();
 
@@ -35,6 +36,11 @@ productServer.use(
   })
 );
 initializePassport()
+
+
+
+
+
 routesFunction(productServer)
 productServer.use(passport.initialize())
 productServer.use(passport.session())
