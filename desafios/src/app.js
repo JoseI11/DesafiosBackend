@@ -1,7 +1,8 @@
 import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./dirname.js";
-import socket from './socket.js'
+
+
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import database from "./db.js";
@@ -11,12 +12,15 @@ import routesFunction from "./routes/app.router.js";
 import passport from "passport";
 import initializePassport from "./auth/passport.js";
 import cookieParser from "cookie-parser"
+import bodyParser from "body-parser";
 
 
 //Initialization
 const productServer = express();
-
 //Middlewares
+productServer.use(bodyParser.json());
+productServer.use(bodyParser.urlencoded({extended: true}));
+
 productServer.use(winstonLogger)
 productServer.use(express.json());
 productServer.use(express.static(`${__dirname}/public`));
@@ -39,7 +43,7 @@ initializePassport()
 
 
 
-
+database.connect();
 
 routesFunction(productServer)
 productServer.use(passport.initialize())
@@ -61,9 +65,9 @@ const httpServer = productServer.listen(8080, (req, res) => {
   });
   }
 });
-database.connect();
 
-socket.connect(httpServer)
+
+//socket.connect(httpServer)
 
 
 
