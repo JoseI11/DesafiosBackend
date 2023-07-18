@@ -18,6 +18,8 @@ const config ={
     callbackUrl:process.env.CALLBACK_URL,
     mode:process.env.DEVELOPMENT_MODE,
     jwtSecret: process.env.JWT_SECRET,
-    loggermode:process.env.LOGGER
+    loggermode:process.env.LOGGER,
+    adminEmail:process.env.ADMIN_EMAIL,
+    adminPass:process.env.ADMIN_PASSWORD
 }
 export default config

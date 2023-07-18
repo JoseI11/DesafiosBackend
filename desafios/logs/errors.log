@@ -1299,3 +1299,96 @@
 {"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
 {"level":"debug","message":"POST in /api/sessions/login - 23:04:38"}
 {"level":"debug","message":"GET in /api/sessions/current - 23:04:39"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:13:56"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:13:57"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:14:46"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:14:46"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:17:58"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:17:59"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:19:40"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:19:41"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:20:57"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:20:58"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:23:42"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:23:43"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:27:19"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:27:20"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:31:14"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:31:15"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:33:00"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:33:01"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:34:50"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:34:51"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:40:44"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:40:45"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:41:38"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:41:39"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:43:06"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:43:07"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:51:53"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:51:54"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:53:39"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:53:40"}
+{"level":"debug","message":"POST in /api/sessions/login - 18:54:51"}
+{"level":"debug","message":"GET in /api/sessions/current - 18:54:51"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:02:51"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:02:52"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:05:57"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:05:58"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:06:39"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:06:40"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:07:46"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:07:46"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:09:04"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:09:05"}
+{"level":"debug","message":"POST in /api/sessions/login - 19:11:12"}
+{"level":"debug","message":"GET in /api/sessions/current - 19:11:13"}
+{"level":"debug","message":"POST in /api/products - 21:16:04"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"GET in /api/products - 21:16:05"}
+{"level":"debug","message":"GET in /api/products/undefined - 21:16:05"}
+{"level":"error","message":"Cannot get products with mongoose BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer"}
+{"level":"debug","message":"PUT in /api/products/undefined - 21:16:05"}
+{"level":"debug","message":"DELETE in /api/v1/products/undefined - 21:16:05"}
+{"level":"debug","message":"POST in /api/products - 21:18:52"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"GET in /api/products - 21:18:52"}
+{"level":"debug","message":"GET in /api/products/undefined - 21:18:52"}
+{"level":"error","message":"Cannot get products with mongoose BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer"}
+{"level":"debug","message":"PUT in /api/products/undefined - 21:18:52"}
+{"level":"error","message":"Cannot update products with mongoose TypeError: Cannot read properties of undefined (reading '_id')"}
+{"level":"debug","message":"DELETE in /api/v1/products/undefined - 21:18:52"}
+{"level":"debug","message":"POST in /api/products - 21:20:05"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"GET in /api/products - 21:20:05"}
+{"level":"debug","message":"GET in /api/products/undefined - 21:20:05"}
+{"level":"error","message":"Cannot get products with mongoose BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer"}
+{"level":"debug","message":"PUT in /api/products/undefined - 21:20:05"}
+{"level":"error","message":"Cannot update products with mongoose TypeError: Cannot read properties of undefined (reading '_id')"}
+{"level":"debug","message":"DELETE in /api/v1/products/undefined - 21:20:06"}
+{"level":"debug","message":"POST in /api/products - 21:22:58"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"POST in /api/products - 21:23:56"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"POST in /api/products - 21:24:50"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"POST in /api/products - 21:27:42"}
+{"level":"error","message":"Cannot add products with mongoose TypeError: Cannot read properties of undefined (reading 'email')"}
+{"level":"debug","message":"POST in /api/carts - 22:47:44"}
+{"level":"debug","message":"POST in /api/carts - 22:54:25"}
+{"level":"debug","message":"POST in /api/carts/createcart - 22:54:57"}
+{"level":"debug","message":"POST in /api/carts/createcart - 22:56:37"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:05:36"}
+{"level":"debug","message":"GET in /api/carts/ - 23:05:37"}
+{"level":"debug","message":"DELETE in /api/carts/ - 23:05:37"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:08:47"}
+{"level":"debug","message":"GET in /api/carts/ - 23:08:48"}
+{"level":"debug","message":"DELETE in /api/carts/ - 23:08:48"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:10:04"}
+{"level":"debug","message":"GET in /api/carts/ - 23:10:04"}
+{"level":"debug","message":"DELETE in /api/carts/ - 23:10:05"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:10:50"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:12:43"}
+{"level":"debug","message":"POST in /api/carts/createcart - 23:13:51"}
+{"level":"debug","message":"GET in /api/carts/64b5f55f7fc4a92f7dbddcae - 23:13:52"}
+{"level":"debug","message":"DELETE in /api/carts/64b5f55f7fc4a92f7dbddcae - 23:13:52"}

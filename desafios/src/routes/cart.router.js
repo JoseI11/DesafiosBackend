@@ -2,12 +2,12 @@
 
 import { Router } from "express";
 import { roladm,roluser} from '../../middlewares/auth.js';
-import { getCartsall ,getCartbyId,addProductcart,updatetheCart,updateProductFromtheCart,deletetheCart,deleteproductFromthecart,purchase} from "../controllers/cart.controller.js";
+import { getCartsall ,getCartbyId,addProductcart,updatetheCart,updateProductFromtheCart,deletetheCart,deleteproductFromthecart,purchase,createCart} from "../controllers/cart.controller.js";
 const router = Router();
 
 router.get("/", getCartsall);
 
-
+router.post("/createcart",createCart)
 router.get("/:cid", getCartbyId)
 router.put("/:cid",updatetheCart)
 router.delete("/:cid",deletetheCart)

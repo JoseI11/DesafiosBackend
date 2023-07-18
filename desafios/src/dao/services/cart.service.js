@@ -6,6 +6,14 @@ class CartService {
     constructor() {
         this.cartRepository = cartRepository;
     }
+    createCart=async()=>{
+        try {
+            return this.cartRepository.createCart()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     getCarts = async () => {
         try {
             return this.cartRepository.getCarts();

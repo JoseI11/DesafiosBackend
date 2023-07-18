@@ -3,6 +3,15 @@ import { cartModel } from "../models/cart.model.js";
     constructor() {
         this.cartModel = cartModel
     }
+
+    createCart = async (cart) => {
+        try {
+          const productCreated = await this.cartModel.create(cart);
+          return productCreated;
+        } catch (error) {
+          console.log(error);
+        }
+      };
     getCarts = async () => {
         try {
             return this.cartModel.find();

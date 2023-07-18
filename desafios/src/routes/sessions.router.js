@@ -15,7 +15,7 @@ router.post("/login",passport.authenticate("login",{failureRedirect:"/api/sessio
 router.get("/failLogin",failLogin)
 
 
-router.get("/current",getcurrentUser)
+//router.get("/current",getcurrentUser)
 
 router.get("/github",passport.authenticate("githublogin",{scope:["user:email"] }),(req,res)=>{
 

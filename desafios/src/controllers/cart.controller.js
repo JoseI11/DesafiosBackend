@@ -2,6 +2,21 @@ import { ticketService } from "../dao/services/ticket.service.js";
 import { cartService } from "../dao/services/cart.service.js";
 import { userService } from "../dao/services/user.service.js";
 import { productService } from "../dao/services/product.service.js"
+
+export async function createCart(req, res) {
+    try {
+        const cart = req.body;
+        const createdCart = await cartService.createCart(cart);    
+      if (!createdCart) {
+        return res
+          .status(400)
+          .send({ status: "error", message: "Error to create cart", error: "No se pudo crear el carrito" });
+      }
+      return res.send({ status: "success", message: "cart created", payload: createdCart});
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+};
 export async function getCartsall(req, res) {
     try {
         const consulta = await cartService.getCarts();

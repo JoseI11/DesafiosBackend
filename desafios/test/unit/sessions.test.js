@@ -42,7 +42,7 @@ describe("Set de pruebas de integración para modulo de sesiones", function () {
     it("GET /api/sessions/current: Debe mostrar la información contenida dentro de la sesion", async function () {
       
       let result = await requester.get("/api/sessions/current");
-      console.log(result)
+     // console.log(result)
       // expect(result.payload.email).to.be.eql("jose1-imhoff@hotmail.com");
     }).timeout(10000);
   });

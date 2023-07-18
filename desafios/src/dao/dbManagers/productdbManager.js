@@ -1,6 +1,6 @@
 import { productModel } from "../models/product.model.js";
 
-export default class productdbManager {
+class ProductdbManager {
   constructor(){
     this.model = productModel;
   }
@@ -51,7 +51,7 @@ export default class productdbManager {
     }
   };
 
-  updateProduct = async (product, pid) => {
+  updateProduct = async (pid, product) => {
     try {
       const productUpdated = await productModel.updateOne({ _id: pid }, product)
       return productUpdated;
@@ -69,3 +69,4 @@ export default class productdbManager {
 
   }
 }
+export const productMongo = new ProductdbManager()
