@@ -2,7 +2,7 @@ import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./dirname.js";
 
-
+import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import database from "./db.js";
@@ -11,7 +11,7 @@ import { winstonLogger } from "./utils/logger.js";
 import routesFunction from "./routes/app.router.js";
 import passport from "passport";
 import initializePassport from "./auth/passport.js";
-import cookieParser from "cookie-parser"
+
 import bodyParser from "body-parser";
 
 
@@ -28,17 +28,7 @@ productServer.use(express.urlencoded({ extended: true }));
 productServer.use(express.static(`${__dirname}/public`));
 productServer.use(cookieParser())
 
-productServer.use(
-  session({
-    store: MongoStore.create({
-      mongoUrl: config.dbUrl,
-      ttl: 6000
-    }),
-    resave: true,
-    saveUninitialized: false,
-    secret: config.sessionSecret,
-  })
-);
+productServer.use(cookieParser())
 initializePassport()
 
 

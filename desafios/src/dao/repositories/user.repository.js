@@ -47,7 +47,7 @@ class UserRepository {
     }
     updateFunction=async (id,user)=>{
         try {
-            console.log(user);
+            console.log(id)
             return await this.model.updateOne({_id:id},user);
             
         } catch (error) {
