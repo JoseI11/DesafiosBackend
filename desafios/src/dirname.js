@@ -7,7 +7,27 @@ const __dirname = dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `${__dirname}/public/images`);
+
+    // console.log(file.fieldname)
+    // if (file.fieldname === 'profile') {
+    //   cb(null, `${__dirname}/public/images/profiles`)
+    // } else
+    //   if (file.fieldname === 'document') {
+    //     cb(null, `${__dirname}/public/images/documents`)
+    //   } else
+    //     if (file.fieldname === 'products') {
+    //       cb(null, `${__dirname}/public/images/products`)
+    //     }
+    let subfolder = ''
+    if (
+      file.fieldname === 'identification' ||
+      file.fieldname === 'address' ||
+      file.fieldname === 'statement'
+    ) {
+      subfolder = '/documents'
+    }
+    cb(null, `${__dirname}/public${subfolder}/${file.fieldname}`)
+
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`);

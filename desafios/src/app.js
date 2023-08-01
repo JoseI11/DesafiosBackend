@@ -1,6 +1,6 @@
 import express from "express";
 import handlebars from 'express-handlebars'
-import __dirname from "./dirname.js";
+import __dirname, { uploader}  from "./dirname.js";
 
 import cookieParser from "cookie-parser";
 import session from "express-session";
@@ -25,7 +25,7 @@ productServer.use(winstonLogger)
 productServer.use(express.json());
 productServer.use(express.static(`${__dirname}/public`));
 productServer.use(express.urlencoded({ extended: true }));
-productServer.use(express.static(`${__dirname}/public`));
+
 productServer.use(cookieParser())
 
 productServer.use(cookieParser())

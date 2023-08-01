@@ -59,11 +59,12 @@ export async function addProductcart(req, res) {
         const pId = req.params.pid
         const { quantity } = req.body
         let resul = {}
+        console.log(req.user)
         let prod = await productService.getProductsbyitsId(pId);
-        console.log(req.session)
- 
-        if (req.session.user.role === "premium" || req.session.user.role === "admin") {
-            if (req.session.user.email !== prod.owner) {
+        let user=await userService.findbyuserid({_id:req.user.id})
+        console.log(user)
+        if (user.role === "premium" || user.role === "admin") {
+            if (user.email !== prod.owner) {
                 resul = await cartService.addProductCart(cId, pId, quantity);
 
             } else {
@@ -72,7 +73,7 @@ export async function addProductcart(req, res) {
                     .send({ status: "error", error: "You cannot add the product because you are the owner" });
             }
         } else {
-            console.log("pasa aqui")
+            
             resul = await cartService.addProductCart(cId, pId, quantity);
         }
 
