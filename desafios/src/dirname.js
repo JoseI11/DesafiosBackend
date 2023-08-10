@@ -18,6 +18,10 @@ const storage = multer.diskStorage({
     //     if (file.fieldname === 'products') {
     //       cb(null, `${__dirname}/public/images/products`)
     //     }
+    // if(file.filename==="products"){
+    //    cb(null, `${__dirname}/public/images`);
+    // }
+   
     let subfolder = ''
     if (
       file.fieldname === 'identification' ||
@@ -26,7 +30,7 @@ const storage = multer.diskStorage({
     ) {
       subfolder = '/documents'
     }
-    cb(null, `${__dirname}/public${subfolder}/${file.fieldname}`)
+     cb(null, `${__dirname}/public${subfolder}/${file.fieldname}`)
 
   },
   filename: function (req, file, cb) {

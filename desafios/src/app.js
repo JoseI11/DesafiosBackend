@@ -26,7 +26,7 @@ productServer.use(express.json());
 productServer.use(express.static(`${__dirname}/public`));
 productServer.use(express.urlencoded({ extended: true }));
 
-productServer.use(cookieParser())
+//productServer.use(passport.session())
 
 productServer.use(cookieParser())
 initializePassport()
@@ -37,7 +37,7 @@ database.connect();
 
 routesFunction(productServer)
 productServer.use(passport.initialize())
-productServer.use(passport.session())
+
 
 //View engine
 productServer.engine("handlebars", handlebars.engine());
