@@ -1,19 +1,18 @@
 import express from "express";
 import handlebars from 'express-handlebars'
-import __dirname, { uploader}  from "./dirname.js";
+import __dirname from "./dirname.js";
 
 import cookieParser from "cookie-parser";
-import session from "express-session";
-import MongoStore from "connect-mongo";
+
 import database from "./db.js";
-import config from "./config.js";
+//import cors from "cors";
 import { winstonLogger } from "./utils/logger.js";
 import routesFunction from "./routes/app.router.js";
 import passport from "passport";
 import initializePassport from "./auth/passport.js";
-
+import paymentsRouter from "./routes/payment.router.js"
 import bodyParser from "body-parser";
-
+import { compare } from './views/helper.js'
 
 //Initialization
 const productServer = express();
@@ -31,7 +30,8 @@ productServer.use(express.urlencoded({ extended: true }));
 productServer.use(cookieParser())
 initializePassport()
 
-
+// productServer.use(cors());
+productServer.use("/api/payments",paymentsRouter)
 
 database.connect();
 
@@ -40,7 +40,16 @@ productServer.use(passport.initialize())
 
 
 //View engine
-productServer.engine("handlebars", handlebars.engine());
+productServer.engine(
+  'handlebars',
+  handlebars.engine({
+    helpers: {
+      compare
+    },
+    defaultLayout: 'main'
+  })
+)
+//productServer.engine("handlebars", handlebars.engine());
 productServer.set("views", `${__dirname}/views`);
 productServer.set("view engine", "handlebars");
 
@@ -48,7 +57,7 @@ const httpServer = productServer.listen(8080, (req, res) => {
   try {
     console.log("Listening on port 8080")
   } catch (error) {
-   console.log(error)
+
     return res.status(500).send({
       status: "error",
       error: "Failed to the connect to the server",
